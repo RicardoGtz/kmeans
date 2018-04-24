@@ -54,7 +54,7 @@ public class GUI extends JFrame {
 		pnlNorth = new JPanel();
 		contentPane.add(pnlNorth, BorderLayout.NORTH);
 		//Declaran las etiquetas del frame
-		JLabel lblNaiveBayesCross = new JLabel("Na\u00EFve Bayes - Cross Validation");
+		JLabel lblNaiveBayesCross = new JLabel("Kmeans - Aglomerativo");
 		lblNaiveBayesCross.setHorizontalAlignment(SwingConstants.CENTER);
 		JLabel lblK_1 = new JLabel("Cross Validation folds");
 		lblK_1.setHorizontalAlignment(SwingConstants.RIGHT);
