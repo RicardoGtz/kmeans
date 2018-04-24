@@ -54,8 +54,8 @@ public class GUI extends JFrame {
 		pnlNorth = new JPanel();
 		contentPane.add(pnlNorth, BorderLayout.NORTH);
 		//Declaran las etiquetas del frame
-		JLabel lblNaiveBayesCross = new JLabel("Kmeans - Aglomerativo");
-		lblNaiveBayesCross.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel lblTitle = new JLabel("Kmeans - Aglomerativo");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		JLabel lblK_1 = new JLabel("Cross Validation folds");
 		lblK_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		//Declara los botones del frame
@@ -95,7 +95,7 @@ public class GUI extends JFrame {
 			gl_pnlNorth.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlNorth.createSequentialGroup()
 					.addGap(217)
-					.addComponent(lblNaiveBayesCross, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+					.addComponent(lblTitle, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
 					.addGap(222))
 				.addGroup(gl_pnlNorth.createSequentialGroup()
 					.addContainerGap()
@@ -125,7 +125,7 @@ public class GUI extends JFrame {
 		gl_pnlNorth.setVerticalGroup(
 			gl_pnlNorth.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlNorth.createSequentialGroup()
-					.addComponent(lblNaiveBayesCross)
+					.addComponent(lblTitle)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pnlNorth.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnChoose)
