@@ -42,18 +42,23 @@ public class Data {
 			String flag;
 			int i=0;
 			//Leemos el archivo hasta encontrar la linea @DATA
-			while (!(flag=br.readLine()).matches("@data.*")) {
+			while (!(flag=(br.readLine()).toLowerCase()).matches("@data.*")) {
 				//Si encontramos la linea que inicia como @RELATION
 				//La almacenamos como nombre del conjunto
 				if(flag.matches("@relation.*"))
 					name=flag.replaceAll("@relation\\s", "");//Limpia la linea
 				//Si encontramos que continen los valores de las clases
 				//Limpia la linea la almacenana en el arreglo de clases
-				if(flag.matches("@attribute.*")){
-					String n=(flag.replaceAll("@attribute ", "")).replaceAll(" [{].*[}]","");					
-					String r[]=flag.substring(flag.indexOf('{')+1, flag.indexOf('}')).split(",[\\s]*");
-					//Añade el atriuto a la lista de atributos
-					attributes.add(new Attribute(n,new ArrayList<String>(Arrays.asList(r)),i));
+				if(flag.matches("@attribute.*")){					
+					if(flag.indexOf("{")!=-1) {	
+						String n=(flag.replaceAll("@attribute ", "")).replaceAll(" [{].*[}]","");
+						String r[]=flag.substring(flag.indexOf('{')+1, flag.indexOf('}')).split(",[\\s]*");
+						//Añade el atributo a la lista de atributos
+						attributes.add(new Attribute(n,new ArrayList<String>(Arrays.asList(r)),"discrete",i));
+					}else { 
+						String n=(flag.replaceAll("@attribute ", "")).replaceAll("numeric|integer|real","");
+						attributes.add(new Attribute(n,new ArrayList<String>(),"numeric",i));
+					}					
 					i++;
 				}
 			}
@@ -63,8 +68,10 @@ public class Data {
 				if(flag.matches("%"))
 					break;
 				//Almacena cada instancia de datos en un arreglo
-				String aux[]=flag.split(",");
-				instances.add(new ArrayList<>(Arrays.asList(aux)));
+				if(!flag.matches("")) {
+					String aux[]=flag.split(",");
+					instances.add(new ArrayList<>(Arrays.asList(aux)));
+				}
 			}
 			//Deosrdenamos las instancias que ingresamos
 			//Collections.shuffle(instances);
