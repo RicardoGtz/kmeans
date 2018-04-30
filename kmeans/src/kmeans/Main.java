@@ -10,7 +10,7 @@ public class Main {
 		//Se inicia un nuevo evento en la cola
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
+				try {					
 					//Cre un nuevo objeto de tio GUI (La interfaz Grafica)
 					GUI frame = new GUI();
 					//Establece el frame en visible

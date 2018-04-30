@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 //import java.util.Collections;
 
 public class Data {
@@ -74,7 +75,7 @@ public class Data {
 				}
 			}
 			//Deosrdenamos las instancias que ingresamos
-			//Collections.shuffle(instances);
+			Collections.shuffle(instances);
 			br.close();
 			
 		} catch ( IOException e1) {

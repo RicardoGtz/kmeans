@@ -34,7 +34,7 @@ public class StartHandler implements ActionListener {
 			if(!ref.txtfCVFolds.getText().equals(""))
 				//Verifica el tipo de implementaciona a utilizar
 				if(ref.rdbtnOwn.isSelected())
-					ownCrossValidation();
+					ownClustering();
 				else
 					wekaKNN();
 			else
@@ -43,6 +43,11 @@ public class StartHandler implements ActionListener {
 			JOptionPane.showMessageDialog(ref,"ERROR: None selected file");		
 	}
 	
+	private void ownClustering() {
+		Kmeans kmns=new Kmeans(ref.dat.attributes,ref.dat.instances,ref.dat.classifierAttribite);	
+		kmns.buildClusters(3);
+	}
+
 	private void ownCrossValidation(){		
 		if(ref.chckbxSelectAttributes.isSelected()) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"###############################################\n"
