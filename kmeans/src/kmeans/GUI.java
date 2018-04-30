@@ -30,7 +30,7 @@ public class GUI extends JFrame {
 	//Este objeto almacenara los datos del archivo a leer
 	public Data dat;
 	public JTextField txtfFile;
-	public JTextField txtfCVFolds;
+	public JTextField txtfClusters;
 	private JPanel contentPane;	
 	private JPanel pnlNorth;
 	private JButton btnChoose;
@@ -56,7 +56,7 @@ public class GUI extends JFrame {
 		//Declaran las etiquetas del frame
 		JLabel lblTitle = new JLabel("Kmeans - Aglomerativo");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		JLabel lblK_1 = new JLabel("Cross Validation folds");
+		JLabel lblK_1 = new JLabel("Clusters");
 		lblK_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		//Declara los botones del frame
 		btnChoose = new JButton("Choose File");			
@@ -69,9 +69,9 @@ public class GUI extends JFrame {
 		txtfFile.setColumns(10);		
 		//Declara el TextField para ingresar la contidad de particiones a 
 		//consideras en el cross validation
-		txtfCVFolds = new JTextField();
-		txtfCVFolds.setText("10");
-		txtfCVFolds.setColumns(10);
+		txtfClusters = new JTextField();
+		txtfClusters.setText("3");
+		txtfClusters.setColumns(10);
 		//Declara los botones para seleccionar la implementacion con la que se desea trabajar
 		rdbtnWeka = new JRadioButton("Weka");		
 		rdbtnOwn = new JRadioButton("Own");
@@ -108,18 +108,17 @@ public class GUI extends JFrame {
 						.addGroup(gl_pnlNorth.createSequentialGroup()
 							.addComponent(lblClasificationIndex, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtfClassifierAttribute, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+							.addComponent(txtfClassifierAttribute, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
 							.addComponent(chckbxSelectAttributes)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(12)
 							.addComponent(lblK_1, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtfCVFolds, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addComponent(txtfClusters, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+							.addGap(17)
 							.addComponent(rdbtnWeka)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rdbtnOwn)
-							.addGap(11)))
+							.addComponent(rdbtnOwn)))
 					.addContainerGap())
 		);
 		gl_pnlNorth.setVerticalGroup(
@@ -133,13 +132,13 @@ public class GUI extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_pnlNorth.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnStart)
-						.addComponent(rdbtnWeka)
-						.addComponent(rdbtnOwn)
-						.addComponent(txtfCVFolds, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblK_1)
 						.addComponent(lblClasificationIndex)
+						.addComponent(chckbxSelectAttributes)
 						.addComponent(txtfClassifierAttribute, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(chckbxSelectAttributes))
+						.addComponent(txtfClusters, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblK_1)
+						.addComponent(rdbtnOwn)
+						.addComponent(rdbtnWeka))
 					.addContainerGap())
 		);
 		//Establece el layout configurado

@@ -31,7 +31,7 @@ public class StartHandler implements ActionListener {
 			ref.dat.setClassifierAttribite(Integer.parseInt(ref.txtfClassifierAttribute.getText()));
 		//Valida que los campos no esten vacios y que exista un archivo seleccionado
 		if(!ref.txtfFile.getText().equals("None selected file"))			
-			if(!ref.txtfCVFolds.getText().equals(""))
+			if(!ref.txtfClusters.getText().equals(""))
 				//Verifica el tipo de implementaciona a utilizar
 				if(ref.rdbtnOwn.isSelected())
 					ownClustering();
@@ -45,7 +45,7 @@ public class StartHandler implements ActionListener {
 	
 	private void ownClustering() {
 		Kmeans kmns=new Kmeans(ref.dat.attributes,ref.dat.instances,ref.dat.classifierAttribite);	
-		kmns.buildClusters(3);
+		kmns.buildClusters(Integer.parseInt(ref.txtfClusters.getText()));
 		int i=1;
 		for(Cluster value:kmns.clusters) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"*************************\n"
@@ -58,6 +58,7 @@ public class StartHandler implements ActionListener {
 	}
 
 	private void ownCrossValidation(){		
+		/*
 		if(ref.chckbxSelectAttributes.isSelected()) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"###############################################\n"
 														 	 +"Atributos originales:\n"
@@ -81,8 +82,7 @@ public class StartHandler implements ActionListener {
 		//Inices que indican el inicio y fin del conjunto de prueba
 		int p=0,q=s;
 		//
-		/*if(m%folds!=0)
-			q+=1;*/
+		
 		double porcent=0;
 		//System.out.println(s);
 		//Crea dos arraylist para almacenar el subconjunto de prueba y entenamiento
@@ -169,6 +169,7 @@ public class StartHandler implements ActionListener {
 		//Imprime la matriz de confusion
 		ref.txtaConsole.setText(ref.txtaConsole.getText()+"\n"+ms.getMatrix()+"\n");
 		
+		*/
 	}
 
 	private void wekaKNN(){		
