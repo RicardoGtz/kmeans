@@ -86,4 +86,14 @@ public class Cluster {
 	public void clearInstances() {
 		this.instances.clear();
 	}
+
+	@Override
+	public boolean equals(Object o){
+		if(( o instanceof Cluster) && (this.instances.equals(((Cluster)o).getInstances()))){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
 }

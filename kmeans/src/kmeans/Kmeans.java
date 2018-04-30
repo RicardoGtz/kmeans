@@ -26,13 +26,17 @@ public class Kmeans {
 		}
 		id=null;
 		fillClusters();
-		updateClustersCentroid();
-		
-		
-		
-		for(int i=0;i<this.clusters.size();i++) 
-			System.out.println(clusters.get(i).getInstances());
-					
+		ArrayList<Cluster> aux=new ArrayList<Cluster>();
+		while(!this.clusters.equals(aux)) {
+			aux=new ArrayList<Cluster>(this.clusters);
+			updateClustersCentroid();
+			clearClusters();
+			fillClusters();
+		}					
+	}
+	private void clearClusters() {
+		for(Cluster value:this.clusters)
+			value.clearInstances();		
 	}
 	private void updateClustersCentroid() {
 		for(Cluster value:this.clusters)
