@@ -13,7 +13,7 @@ public class Cluster {
 	 				  * 1 para distancia Manhattan
 	 				  * 2 Para distancia Euclidiana
 	 				  */	
-	//Constructor de la clase
+	//Constructores de la clase
 	public Cluster(ArrayList<String> in,int classifierAttribute,int distance) {
 		//Se construye a partir de un ArrayList como centroide
 		this.centroid=new ArrayList<String>(in);
@@ -27,6 +27,13 @@ public class Cluster {
 		else
 			this.distanceType=2;
 		
+	}
+	public Cluster(Cluster o) {		
+		this.centroid=new ArrayList<String>(o.centroid);
+		this.instances=new ArrayList<ArrayList<String>>(o.instances.size());
+		for(ArrayList<String> val:o.instances)
+			this.instances.add(new ArrayList<String>(val));
+		this.distanceType=o.distanceType;
 	}
 	//Metodo para obtener la distacia entre el centroide y una instancia
 	public double getDistance(ArrayList<String> instance) {
@@ -85,6 +92,10 @@ public class Cluster {
 	//Metodo que limpia los elementos del cluster
 	public void clearInstances() {
 		this.instances.clear();
+	}
+	@Override
+	public Cluster clone() {
+		return (new Cluster(this));
 	}
 
 	@Override

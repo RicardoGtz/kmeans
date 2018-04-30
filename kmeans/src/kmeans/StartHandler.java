@@ -49,7 +49,7 @@ public class StartHandler implements ActionListener {
 		int i=1;
 		for(Cluster value:kmns.clusters) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"*************************\n"
-															 +"Grupo "+i+"\n");
+															 +"Grupo "+i+" Elementos:"+value.instances.size()+"\n");
 															
 			for(ArrayList<String> str:value.instances)
 				ref.txtaConsole.setText(ref.txtaConsole.getText()+str+"\n");

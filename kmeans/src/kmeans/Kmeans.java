@@ -21,14 +21,15 @@ public class Kmeans {
 		TreeSet<Integer> id=new TreeSet<Integer>();
 		while(clusters.size()!=numClusters) {			
 			int index=(int)(Math.random()*(this.instances.size()-1));			
-			if(id.add(index)) 				
-				clusters.add(new Cluster(instances.get(index),classifierAttribute,2));			
+			if(id.add(index)) { 				
+				clusters.add(new Cluster(instances.get(index),classifierAttribute,2));
+			}
 		}
 		id=null;
 		fillClusters();
 		ArrayList<Cluster> aux=new ArrayList<Cluster>();
-		while(!this.clusters.equals(aux)) {
-			aux=new ArrayList<Cluster>(this.clusters);
+		while(!this.clusters.equals(aux)) {			
+			aux=cloneClustersList(this.clusters);
 			updateClustersCentroid();
 			clearClusters();
 			fillClusters();
@@ -41,6 +42,11 @@ public class Kmeans {
 	private void updateClustersCentroid() {
 		for(Cluster value:this.clusters)
 			value.updateCentroid();		
+	}
+	public static ArrayList<Cluster> cloneClustersList(ArrayList<Cluster> list) {
+		ArrayList<Cluster> clone = new ArrayList<Cluster>(list.size());
+	    for (Cluster item : list) clone.add(item.clone());
+	    return clone;
 	}
 	private void fillClusters() {
 		for(ArrayList<String> value:this.instances) {
