@@ -53,7 +53,7 @@ public class StartHandler implements ActionListener {
 		else
 			JOptionPane.showMessageDialog(ref,"ERROR: None selected file");		
 	}
-	//Comienza kmeans
+	//Comienza k-means
 	private void ownClustering() {
 		Kmeans kmns=new Kmeans(ref.dat.attributes,ref.dat.instances,ref.dat.classifierAttribite);	
 		kmns.buildClusters(Integer.parseInt(ref.txtfClusters.getText()));
