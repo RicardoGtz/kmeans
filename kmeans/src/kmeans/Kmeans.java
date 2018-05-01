@@ -40,8 +40,9 @@ public class Kmeans {
 			value.clearInstances();		
 	}
 	private void updateClustersCentroid() {
-		for(Cluster value:this.clusters)
-			value.updateCentroid();		
+		for(Cluster value:this.clusters) {
+			value.updateCentroid();	
+		}
 	}
 	public static ArrayList<Cluster> cloneClustersList(ArrayList<Cluster> list) {
 		ArrayList<Cluster> clone = new ArrayList<Cluster>(list.size());

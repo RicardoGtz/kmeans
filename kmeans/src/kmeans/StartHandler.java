@@ -1,8 +1,19 @@
 package kmeans;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import weka.classifiers.evaluation.ThresholdCurve;
+import weka.clusterers.HierarchicalClusterer;
+import weka.core.Instances;
+import weka.core.Utils;
+import weka.gui.visualize.PlotData2D;
+import weka.gui.visualize.ThresholdVisualizePanel;
 
 import javax.swing.JOptionPane;
 
@@ -173,36 +184,53 @@ public class StartHandler implements ActionListener {
 	}
 
 	private void wekaKNN(){		
-		/*try {
-			//Crea un conjunto de datos
-			Instances data = new Instances(ref.dat.getBufferedReader());
-			//Define el atriuto con la clase
-			data.setClassIndex(data.numAttributes()-1);
-			//Crea un objeto de tipo KNN
-			IBk knn=new IBk();
-			//Sele eestablece el numeo de vecinos a considerar
-			knn.setKNN(Integer.parseInt(ref.txtfKnn.getText()));
-			//Crea un objeto de tipo clasificador y se le asigna el conjunto de datos
-			Classifier ibk=new IBk();
-			ibk.buildClassifier(data);	
+		Instances result;
+		try {
+			result = new Instances(new BufferedReader(new FileReader(ref.dat.data)));
+			//Define el actributo clasificador
+			result.setClassIndex(result.numAttributes() - 1);
+			//Crea un objeto de tipo Agrupador jerarquico
+			HierarchicalClusterer jerarquico =new HierarchicalClusterer();
+			jerarquico.setPrintNewick(true);
+			jerarquico.setNumClusters(Integer.parseInt(ref.txtfClusters.getText()));			
+			//Construye el agrupador
+			jerarquico.buildClusterer(result);			
+			//Imprime el arbol
+			ref.txtaConsole.setText(ref.txtaConsole.getText()+jerarquico.toString()+"\n");			
 			
-			//Se crea una evaluacion		    
-		    Evaluation eval = new Evaluation(data);
-		    //Establece el modelo de validacion cruzada que se va a usar
-		    eval.crossValidateModel(ibk,data, Integer.parseInt(ref.txtfCVFolds.getText()), new Random(1));
-		    //Imprime en consola el resultado de la evaluacion
-		    ref.txtaConsole.setText(ref.txtaConsole.getText()+
-		    						"###############################################\n"+
-					 				"###############################################\n"+
-		    						"\nCalculo con clases de Weka\n"+
-					 				"\nExactitud: "+Double.toString(eval.pctCorrect())+"%\n");    
-			
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}catch (Exception e) {
+			ThresholdCurve tc = new ThresholdCurve();
+			// method visualize
+			ThresholdVisualizePanel vmc = new ThresholdVisualizePanel();
+			vmc.setROCString("(Area under ROC = " + Utils.doubleToString(tc.getROCArea(result), 4) + ")");
+			vmc.setName(result.relationName());
+			PlotData2D tempd = new PlotData2D(result);
+			tempd.setPlotName(result.relationName());
+			tempd.addInstanceNumberAttribute();
+			// specify which points are connected
+			boolean[] cp = new boolean[result.numInstances()];
+			for (int n = 1; n < cp.length; n++)
+				cp[n] = true;
+			tempd.setConnectPoints(cp);
+			// add plot
+			vmc.addPlot(tempd);
+			// method visualizeClassifierErrors
+			String plotName = vmc.getName();
+			final javax.swing.JFrame jf = new javax.swing.JFrame("Weka Classifier Visualize: " + plotName);
+			jf.setSize(500, 400);
+			jf.getContentPane().setLayout(new BorderLayout());
+
+			jf.getContentPane().add(vmc, BorderLayout.CENTER);
+			jf.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					jf.dispose();
+				}
+			});
+
+			jf.setVisible(true);
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+			e1.printStackTrace();
+		}
 	}
 
 }

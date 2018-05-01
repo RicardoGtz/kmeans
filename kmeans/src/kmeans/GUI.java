@@ -73,8 +73,8 @@ public class GUI extends JFrame {
 		txtfClusters.setText("3");
 		txtfClusters.setColumns(10);
 		//Declara los botones para seleccionar la implementacion con la que se desea trabajar
-		rdbtnWeka = new JRadioButton("Weka");		
-		rdbtnOwn = new JRadioButton("Own");
+		rdbtnWeka = new JRadioButton("Aglomerativo");		
+		rdbtnOwn = new JRadioButton("Kmeans");
 		rdbtnOwn.setSelected(true);		
 		
 		btngOption = new ButtonGroup();
@@ -111,14 +111,15 @@ public class GUI extends JFrame {
 							.addComponent(txtfClassifierAttribute, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
 							.addComponent(chckbxSelectAttributes)
-							.addGap(12)
-							.addComponent(lblK_1, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(18)
+							.addComponent(lblK_1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(txtfClusters, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-							.addGap(17)
+							.addGap(13)
 							.addComponent(rdbtnWeka)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rdbtnOwn)))
+							.addComponent(rdbtnOwn, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+							.addGap(52)))
 					.addContainerGap())
 		);
 		gl_pnlNorth.setVerticalGroup(
@@ -135,10 +136,10 @@ public class GUI extends JFrame {
 						.addComponent(lblClasificationIndex)
 						.addComponent(chckbxSelectAttributes)
 						.addComponent(txtfClassifierAttribute, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtfClusters, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblK_1)
-						.addComponent(rdbtnOwn)
-						.addComponent(rdbtnWeka))
+						.addComponent(txtfClusters, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rdbtnWeka)
+						.addComponent(rdbtnOwn))
 					.addContainerGap())
 		);
 		//Establece el layout configurado
