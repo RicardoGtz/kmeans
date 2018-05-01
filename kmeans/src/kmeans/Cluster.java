@@ -1,6 +1,9 @@
 package kmeans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 //Class Cluster
 /*Esta es a clase encargada de contener los grupos que se generan
  *para la implementación del algoritmo kmeans
@@ -92,6 +95,22 @@ public class Cluster {
 	//Metodo que limpia los elementos del cluster
 	public void clearInstances() {
 		this.instances.clear();
+	}
+	//Metodo que contabiliza las clases agrupadas
+	public HashMap<String,Integer> getClassesFrequency() {
+		if(this.classifierAttribute!=-1) {
+			HashMap<String,Integer> frequency=new HashMap<String,Integer>();
+			for(ArrayList<String>value:this.instances){
+				if(frequency.containsKey(value.get(this.classifierAttribute))) {
+					int count=frequency.get(value.get(this.classifierAttribute));
+					frequency.put(value.get(this.classifierAttribute), ++count);
+				}else
+					frequency.put(value.get(this.classifierAttribute), 1);
+			}
+			return frequency;
+		}else
+			return null;
+		
 	}
 	@Override
 	public Cluster clone() {

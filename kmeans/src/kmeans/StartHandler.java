@@ -58,14 +58,15 @@ public class StartHandler implements ActionListener {
 		Kmeans kmns=new Kmeans(ref.dat.attributes,ref.dat.instances,ref.dat.classifierAttribite);	
 		kmns.buildClusters(Integer.parseInt(ref.txtfClusters.getText()));
 		int i=1;
-		for(Cluster value:kmns.clusters) {
+		ref.txtaConsole.setText(ref.txtaConsole.getText()+kmns+"\n");
+		/*for(Cluster value:kmns.clusters) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"*************************\n"
 															 +"Grupo "+i+" Elementos:"+value.instances.size()+"\n");
 															
 			for(ArrayList<String> str:value.instances)
 				ref.txtaConsole.setText(ref.txtaConsole.getText()+str+"\n");
 			i++;
-		}
+		}*/
 	}
 
 	private void ownCrossValidation(){		

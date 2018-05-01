@@ -1,6 +1,8 @@
 package kmeans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class Kmeans {
@@ -61,5 +63,28 @@ public class Kmeans {
 			}
 			this.clusters.get(minCluster).addInstance(value);
 		}		
+	}
+	@Override
+	public String toString() {
+		String str="";int i=1;
+		for(Cluster value:this.clusters) {
+			str+="*************************\n"
+				+"Grupo "+i+" Elementos:"+value.instances.size()+"\n";
+			if(this.classifierAttribute!=-1) {
+				HashMap<String,Integer> auxMap=value.getClassesFrequency();
+				for (Map.Entry<String, Integer> entry : auxMap.entrySet()) {
+				    str+="Clase=" + entry.getKey() + ", Conteo=" + entry.getValue()+"\n";
+				}
+				
+			}else {
+				str+="Sin clases asigandas";
+			}
+			
+															
+			for(ArrayList<String> instance:value.instances)
+				str+=instance+"\n";
+			i++;
+		}
+		return str;
 	}
 }
