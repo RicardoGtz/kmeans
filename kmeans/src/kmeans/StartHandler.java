@@ -57,7 +57,7 @@ public class StartHandler implements ActionListener {
 	private void ownClustering() {
 		Kmeans kmns=new Kmeans(ref.dat.attributes,ref.dat.instances,ref.dat.classifierAttribite);	
 		kmns.buildClusters(Integer.parseInt(ref.txtfClusters.getText()));
-		int i=1;
+		//int i=1;
 		ref.txtaConsole.setText(ref.txtaConsole.getText()+kmns+"\n");
 		/*for(Cluster value:kmns.clusters) {
 			ref.txtaConsole.setText(ref.txtaConsole.getText()+"*************************\n"
