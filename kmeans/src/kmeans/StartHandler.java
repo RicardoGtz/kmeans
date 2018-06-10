@@ -47,7 +47,7 @@ public class StartHandler implements ActionListener {
 				if(ref.rdbtnOwn.isSelected())
 					ownClustering();
 				else
-					wekaKNN();
+					wekaHierarchical();
 			else
 				JOptionPane.showMessageDialog(ref,"ERROR: Cross validation field is void");			
 		else
@@ -184,20 +184,20 @@ public class StartHandler implements ActionListener {
 		*/
 	}
 
-	private void wekaKNN(){		
+	private void wekaHierarchical(){		
 		Instances result;
 		try {
 			result = new Instances(new BufferedReader(new FileReader(ref.dat.data)));
-			//Define el actributo clasificador
+			//Define el actributo clasificador.
 			result.setClassIndex(result.numAttributes() - 1);
 			//Crea un objeto de tipo Agrupador jerarquico
 			HierarchicalClusterer jerarquico =new HierarchicalClusterer();
 			jerarquico.setPrintNewick(true);
-			jerarquico.setNumClusters(Integer.parseInt(ref.txtfClusters.getText()));			
+			jerarquico.setNumClusters(Integer.parseInt(ref.txtfClusters.getText()));
 			//Construye el agrupador
-			jerarquico.buildClusterer(result);			
+			jerarquico.buildClusterer(result);
 			//Imprime el arbol
-			ref.txtaConsole.setText(ref.txtaConsole.getText()+jerarquico.toString()+"\n");			
+			ref.txtaConsole.setText(ref.txtaConsole.getText()+jerarquico+"\n");			
 			
 			ThresholdCurve tc = new ThresholdCurve();
 			// method visualize
